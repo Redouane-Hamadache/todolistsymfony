@@ -18,9 +18,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
-
+    
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
+    
+    #[ORM\Column(length: 75)]
+    private ?string $fullName = null;
+    
+    #[ORM\Column(length: 50, nullable: true)]
+    private ?string $username = null;
 
     #[ORM\Column]
     private array $roles = [];
@@ -33,6 +39,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Task::class, orphanRemoval: true)]
     private Collection $tasks;
+
+
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
 
     public function __construct()
     {
@@ -52,6 +62,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getFullName(): ?string
+    {
+        return $this->fullName;
+    }
+
+    public function setFullName(?string $fullName): self
+    {
+        $this->fullName = $fullName;
+
+        return $this;
+    }
+
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+
+    public function setUsername(?string $username): self
+    {
+        $this->username = $username;
 
         return $this;
     }
@@ -135,6 +169,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $task->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }
