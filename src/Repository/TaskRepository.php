@@ -39,6 +39,16 @@ class TaskRepository extends ServiceEntityRepository
         }
     }
 
+
+    // public function findByExampleField(): array
+    //     {
+    //         return $this->createQueryBuilder('t')
+    //             ->orderBy('t.id', 'DESC')
+    //             ->setMaxResults(1)
+    //             ->getQuery()
+    //             ->getResult()
+    //         ;
+    //     }
 //    /**
 //     * @return Task[] Returns an array of Task objects
 //     */

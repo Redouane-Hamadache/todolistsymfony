@@ -23,7 +23,7 @@ class TaskController extends AbstractController
         $tasksPagination = $paginator->paginate(
             $tasks, /* query NOT result */
             $request->query->getInt('page', 1), /*page number*/
-            10 /*limit per page*/
+            5 /*limit per page*/
         );
 
         return $this->render('task/index.html.twig', [
@@ -51,5 +51,57 @@ class TaskController extends AbstractController
         return $this->render('task/add.html.twig',[
             'form' => $form->createView(),
         ]);
+    }
+
+    #[Route('/task/edit/{id}', name : "app_editTask", methods : ['GET', 'POST'])]
+    public function edit(int $id , TaskRepository $taskRepository, EntityManagerInterface $entityManagerInterface, Request $request) : Response
+    {
+        $task = $taskRepository->findOneBy(["id" => $id]);
+        $form = $this->createForm(TaskType::class, $task);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $task = $form->getData();
+            
+            $entityManagerInterface->persist($task);
+            $entityManagerInterface->flush();
+
+            $this->addFlash(
+                'sucess',
+                'Votre tâche a été modifié !'
+        );
+
+            return new RedirectResponse('/task');
+        }
+
+        return $this->render('task/edit.html.twig',[
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/task/delete/{id}', name : "app_deleteTask", methods : ['GET'])]
+    public function delete(Task $task, EntityManagerInterface $entityManagerInterface): Response
+    {       
+        // $task = $taskRepository->findOneBy(["id" => $id]);
+
+        // if (!$task) {
+        //     $this->addFlash(
+        //         'danger',
+        //         "La tâche en question n'a pas été trouvé"
+        // );
+
+        // return new RedirectResponse('/task');
+        // }
+    
+        $entityManagerInterface->remove($task);
+        $entityManagerInterface->flush();
+
+
+        $this->addFlash(
+                'sucess',
+                'Votre tâche a été supprimé !'
+        );
+
+        return new RedirectResponse('/task');
     }
 }

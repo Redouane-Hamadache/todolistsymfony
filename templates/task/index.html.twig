@@ -18,7 +18,8 @@
         <th scope="col">ID Tâche</th>
         <th scope="col">Nom de tâche</th>
         <th scope="col">Description</th>
-        <th scope="col">Date limite</th>
+        <th scope="col" >Date limite</th>
+        <th scope="col" >Action</th>
         </tr>
     </thead>
     <tbody>
@@ -28,6 +29,17 @@
         <td>{{task.name}}</td>
         <td>{{task.description}}</td>
         <td>{{task.deadline|date("d/m/Y")}}</td>
+        <td>
+            <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton{{task.id}}" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Action
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton{{task.id}}">
+                <a class="dropdown-item" href="{{ path('app_editTask', {"id" : task.id}) }}">Modifier</a>
+                <a class="dropdown-item text-danger" href="{{path('app_deleteTask', {"id" : task.id})}}">Supprimer</a>
+            </div>
+            </div>
+        </td>
         </tr>
     {% endfor %}
     </tbody>
