@@ -80,9 +80,9 @@ class TaskController extends AbstractController
     }
 
     #[Route('/task/delete/{id}', name : "app_deleteTask", methods : ['GET'])]
-    public function delete(Task $task, EntityManagerInterface $entityManagerInterface): Response
+    public function delete(int $id , EntityManagerInterface $entityManagerInterface , TaskRepository $taskRepository): Response
     {       
-        // $task = $taskRepository->findOneBy(["id" => $id]);
+        $task = $taskRepository->findOneBy(["id" => $id]);
 
         // if (!$task) {
         //     $this->addFlash(
