@@ -2,11 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\TaskRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\TaskRepository;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: TaskRepository::class)]
+#[UniqueEntity('name')]
 class Task
 {
     #[ORM\Id]
@@ -30,6 +32,11 @@ class Task
     #[ORM\ManyToOne(inversedBy: 'tasks')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
+
+    public function __construct($user)
+    {
+        $this->user = $user;
+    }
 
     public function getId(): ?int
     {
