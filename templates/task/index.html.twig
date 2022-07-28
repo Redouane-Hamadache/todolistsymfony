@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des tâches{% endblock %}
+
+{% block body %}
+<style>
+    .table{
+        width : 95%;
+        margin: auto;
+        margin-top: 30px;
+    }
+</style>
+
+
+<table class="table table-striped">
+    <thead class="table-primary">
+        <tr>
+        <th scope="col">ID Tâche</th>
+        <th scope="col">Nom de tâche</th>
+        <th scope="col">Description</th>
+        <th scope="col">Date limite</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for task in tasks %}
+        <tr>
+        <th scope="row">{{task.id}}</th>
+        <td>{{task.name}}</td>
+        <td>{{task.description}}</td>
+        <td>{{task.deadline|date("d/m/Y")}}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<div class="navigation">
+    {{ knp_pagination_render(tasks) }}
+</div>
+
+{% endblock %}
