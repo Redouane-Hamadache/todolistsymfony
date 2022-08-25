@@ -9,6 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'Email déja utilisé')]
@@ -20,33 +22,45 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
     
     #[ORM\Column(length: 180, unique: true)]
-    private ?string $email = null;
+    #[Assert\Email()]
+    private string $email;
     
     #[ORM\Column(length: 75)]
-    private ?string $fullName = null;
+    private ?string $firstName;
+
+    #[ORM\Column(length: 75)]
+    private string $lastName;
     
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $username = null;
 
-    #[ORM\Column]
+    #[ORM\Column(type: 'json')]
     private array $roles = [];
 
     /**
      * @var string The hashed password
      */
     #[ORM\Column]
+    // #[Assert\Regex(
+    //     pattern: '/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$/',
+    //     match: false,
+    //     message: 'Your name cannot contain a number',
+    // )]
     private ?string $password = null;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Task::class, orphanRemoval: true)]
     private Collection $tasks;
 
 
-    #[ORM\Column]
-    private ?\DateTimeImmutable $createdAt = null;
+    // #[ORM\Column(type: 'datetime_immutable')]
+    // private ?\DateTimeImmutable $createdAt = null;
 
+
+    
     public function __construct()
     {
         $this->tasks = new ArrayCollection();
+        // $this->createdAt = "2041-11-04 10:00:00";
     }
 
     public function getId(): ?int
@@ -66,14 +80,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getFullName(): ?string
+    public function getFirstName(): ?string
     {
-        return $this->fullName;
+        return $this->firstName;
     }
 
-    public function setFullName(?string $fullName): self
+    public function setFirstName(?string $firstName): self
     {
-        $this->fullName = $fullName;
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    public function getLastName(): ?string
+    {
+        return $this->lastName;
+    }
+
+    public function setLastName(?string $lastName): self
+    {
+        $this->lastName = $lastName;
 
         return $this;
     }
@@ -174,15 +200,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
 
-    public function getCreatedAt(): ?\DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
+    // public function getCreatedAt(): ?\DateTimeImmutable
+    // {
+    //     return $this->createdAt;
+    // }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
-    {
-        $this->createdAt = $createdAt;
+    // public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    // {
+    //     $this->createdAt = $createdAt;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 }
