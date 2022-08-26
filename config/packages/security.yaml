@@ -16,6 +16,9 @@ security:
         main:
             lazy: true
             provider: app_user_provider
+            # form_login:
+            #     login_path: security.login
+            #     check_path: security.login
             custom_authenticator: App\Security\LoginAuthenticator
             logout:
                 path: app_logout

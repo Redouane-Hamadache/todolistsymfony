@@ -12,10 +12,10 @@
 </style>
 
 <div class="list">
+        {% if tasks.items %}
     <table class="table table-striped">
         <thead class="table-primary">
             <tr>
-            <th scope="col">ID Tâche</th>
             <th scope="col">Nom de tâche</th>
             <th scope="col">Description</th>
             <th scope="col" >Date limite</th>
@@ -23,31 +23,35 @@
             </tr>
         </thead>
         <tbody>
-        {% for task in tasks %}
-            <tr>
-            <th scope="row">{{task.id}}</th>
-            <td>{{task.name}}</td>
-            <td>{{task.description}}</td>
-            <td>{{task.deadline|date("d/m/Y")}}</td>
-            <td>
-                <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton{{task.id}}" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Action
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton{{task.id}}">
-                    <a class="dropdown-item" href="{{ path('app_editTask', {"id" : task.id}) }}">Modifier</a>
-                    <a class="dropdown-item text-danger" href="{{path('app_deleteTask', {"id" : task.id})}}">Supprimer</a>
-                </div>
-                </div>
-            </td>
-            </tr>
-        {% endfor %}
+            {% for task in tasks %}
+                <tr>
+                <td>{{task.name}}</td>
+                <td>{{task.description}}</td>
+                <td>{{task.deadline|date("d/m/Y")}}</td>
+                <td>
+                    <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton{{task.id}}" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Action
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton{{task.id}}">
+                        <a class="dropdown-item" href="{{ path('app_editTask', {"id" : task.id}) }}">Modifier</a>
+                        <a class="dropdown-item text-danger" href="{{path('app_deleteTask', {"id" : task.id})}}">Supprimer</a>
+                    </div>
+                    </div>
+                </td>
+                </tr>
+            {% endfor %}
+        
+        
         </tbody>
     </table>
 
     <div class="navigation">
         {{ knp_pagination_render(tasks) }}
     </div>
+        {% else %}
+            <div class='alert alert-light'>Vous n'avez pas de tâches</div>
+        {% endif %}
 
     <div id="addButton">
         <a type="button" href="{{path('app_addTask')}}" class="btn btn-info">Insérer une nouvelle tâche</a>

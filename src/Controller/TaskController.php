@@ -12,13 +12,17 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 
 class TaskController extends AbstractController
 {
     #[Route('/task', name: 'app_task')]
+    #[IsGranted('ROLE_USER')]
     public function index(TaskRepository $taskRepository, PaginatorInterface $paginator, Request $request): Response
     {        
-        $tasks = $taskRepository->findAll();
+        $user = $this->getUser();
+        $tasks = $taskRepository->findAllByUserId($user);
 
         $tasksPagination = $paginator->paginate(
             $tasks, /* query NOT result */
