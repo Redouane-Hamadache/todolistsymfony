@@ -16,7 +16,12 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RegistrationController extends AbstractController
 {
-    #[Route('/register', name: 'app_register')]
+    #[Route('/register')]
+    public function indexNoLocale(): Response
+    {
+        return $this->redirectToRoute('app_register', ['_locale' => 'fr']);
+    }
+    #[Route('/register/{_locale<%app.supported_locales%>}', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, LoginAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
         $user = new User();

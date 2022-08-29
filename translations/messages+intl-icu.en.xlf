@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="fr" target-language="en" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="M35j.Ar" resname="Liste de taches">
+        <source>Liste de taches</source>
+        <target>To-do List</target>
+      </trans-unit>
+      <trans-unit id="YSHyAf3" resname="Bienvenue">
+        <source>Bienvenue</source>
+        <target>Welcome</target>
+      </trans-unit>
+      <trans-unit id="Jjfigul" resname="Accédez a votre liste de tâches">
+        <source>Accédez a votre liste de tâches</source>
+        <target>Access your to-do list</target>
+      </trans-unit>
+      <trans-unit id="fq1kJrL" resname="Pour accéder à votre propre To Do List, veuillez vous connecter.">
+        <source>Pour accéder à votre propre To Do List, veuillez vous connecter.</source>
+        <target>To access your own To Do List, please login.</target>
+      </trans-unit>
+      <trans-unit id=".sSBHfE" resname="C'est votre première fois sur ce site ? Inscrivez-vous !">
+        <source>C'est votre première fois sur ce site ? Inscrivez-vous !</source>
+        <target>Is it your first time on this site? Register now!</target>
+      </trans-unit>
+      <trans-unit id="_1_eksG" resname="Déconnexion">
+        <source>Déconnexion</source>
+        <target>Log Out</target>
+      </trans-unit>
+      <trans-unit id="UzFhc1Y" resname="Accueil">
+        <source>Accueil</source>
+        <target>Home</target>
+      </trans-unit>
+      <trans-unit id="10NHIJi" resname="Nom de tâche">
+        <source>Nom de tâche</source>
+        <target>Task Name</target>
+      </trans-unit>
+      <trans-unit id="Um4Ah8w" resname="Description">
+        <source>Description</source>
+        <target>Description</target>
+      </trans-unit>
+      <trans-unit id="1h_sVKg" resname="Date limite">
+        <source>Date limite</source>
+        <target>Deadline</target>
+      </trans-unit>
+      <trans-unit id="ZM.xMZ0" resname="Action">
+        <source>Action</source>
+        <target>Action</target>
+      </trans-unit>
+      <trans-unit id="QuN2BLY" resname="Modifier">
+        <source>Modifier</source>
+        <target>Edit</target>
+      </trans-unit>
+      <trans-unit id="Xl0CFs4" resname="Supprimer">
+        <source>Supprimer</source>
+        <target>Delete</target>
+      </trans-unit>
+      <trans-unit id="I5gisG7" resname="Vous n'avez pas de tâches">
+        <source>Vous n'avez pas de tâches</source>
+        <target>You have no tasks</target>
+      </trans-unit>
+      <trans-unit id="cvwQqJ." resname="Insérer une nouvelle tâche">
+        <source>Insérer une nouvelle tâche</source>
+        <target>Insert a new task</target>
+      </trans-unit>
+      <trans-unit id="YdaVBBA" resname="Connexion">
+        <source>Connexion</source>
+        <target>Log in</target>
+      </trans-unit>
+      <trans-unit id="lpzL089" resname="Email">
+        <source>Email</source>
+        <target>Email</target>
+      </trans-unit>
+      <trans-unit id=".5yLjAZ" resname="Mot de passe">
+        <source>Mot de passe</source>
+        <target>Password</target>
+      </trans-unit>
+      <trans-unit id="JnYwebt" resname="Pas de compte ? Inscrivez-vous.">
+        <source>Pas de compte ? Inscrivez-vous.</source>
+        <target>No account? Register now.</target>
+      </trans-unit>
+      <trans-unit id="rXBk2ZM" resname="Création d'une tâche">
+        <source>Création d'une tâche</source>
+        <target>Create a task</target>
+      </trans-unit>
+      <trans-unit id="KNkd646" resname="Modification d'une tâche">
+        <source>Modification d'une tâche</source>
+        <target>Edit a task</target>
+      </trans-unit>
+      <trans-unit id="sBFnVlo" resname="Vous êtes connecté en tant que">
+        <source>Vous êtes connecté en tant que</source>
+        <target>You are logged in as</target>
+      </trans-unit>
+      <trans-unit id="sEOpVlo" resname="Créer">
+        <source>Créer</source>
+        <target>Create</target>
+      </trans-unit>
+      <trans-unit id="sEEJouo" resname="Nom de la tâche">
+        <source>Nom de la tâche</source>
+        <target>Task name</target>
+      </trans-unit>
+      <trans-unit id="sASJzuo" resname="Catégorie">
+        <source>Catégorie</source>
+        <target>Category</target>
+      </trans-unit>
+      <trans-unit id="sAADzao" resname="Inscription">
+        <source>Inscription</source>
+        <target>Register</target>
+      </trans-unit>
+      <trans-unit id="sAADzro" resname="Prénom">
+        <source>Prénom</source>
+        <target>First name</target>
+      </trans-unit>
+      <trans-unit id="sDADzao" resname="Nom">
+        <source>Nom</source>
+        <target>Last name</target>
+      </trans-unit>
+      <trans-unit id="sACHzao" resname="Pseudo">
+        <source>Pseudo</source>
+        <target>User name</target>
+      </trans-unit>
+      <trans-unit id="sAXVzao" resname="Confirmation de mot de passe">
+        <source>Confirmation de mot de passe</source>
+        <target>Password confirmation</target>
+      </trans-unit>
+      <trans-unit id="sAWPzao" resname="S'inscrire">
+        <source>S'inscrire</source>
+        <target>Register</target>
+      </trans-unit>
+      <trans-unit id="sWM5kjx" resname="Votre tâche a été supprimé !">
+        <source>Votre tâche a été supprimé !</source>
+        <target>Your task has been deleted!</target>
+      </trans-unit>
+      <trans-unit id="sWM5eqd" resname="Votre tâche a été modifié !">
+        <source>Votre tâche a été modifié !</source>
+        <target>Your task has been changed!</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

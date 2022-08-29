@@ -26,7 +26,11 @@ class TaskType extends AbstractType
                 'label' => 'Description',
                 // 'label_attr' => ['class' => "form-label mt-2"],
             ])
-            ->add('category')
+            ->add('category',null,[
+                // 'attr' => ['class' => 'form-control'],
+                'label' => 'Catégorie',
+                // 'label_attr' => ['class' => "form-label mt-2"],
+            ])
             ->add('deadline', DateType ::class, [
                 'widget' => 'single_text',
                 'label' => 'Date limite',

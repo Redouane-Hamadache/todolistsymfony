@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste de taches{% endblock %}
+{% block title %}{{ 'Liste de taches'|trans }}{% endblock %}
 
 {% block body %}
 
@@ -12,8 +12,8 @@
 </style>
 <div class="d-flex justify-content-center">
     <div class="example-wrapper">
-        <h1>Bienvenue {{app.user.firstname}} !</h1>
-        <a type="button" class="btn btn-primary" href="/task">Accédez a votre liste de tâches</a>
+        <h1>{{ 'Bienvenue'|trans }} {{app.user.firstname}} !</h1>
+        <a type="button" class="btn btn-primary" href="{{ path('app_task', {_locale: app.request.locale}) }}">{{ 'Accédez a votre liste de tâches'|trans }}</a>
     </div>
 </div>
 
@@ -25,14 +25,14 @@
 </style>
 <div class="d-flex justify-content-center">
     <div class="example-wrapper">
-        <h1>Bienvenue !</h1>
+        <h1>{{ 'Bienvenue'|trans }} !</h1>
 
         <p>
-            Pour accéder à votre propre To Do List, veuillez vous connecter. <br>
-            C'est votre première fois sur ce site ? Inscrivez-vous !
+            {{ "Pour accéder à votre propre To Do List, veuillez vous connecter."|trans }} <br>
+            {{ "C'est votre première fois sur ce site ? Inscrivez-vous !"|trans }}
         </p>
-        <a type="button" class="btn btn-primary" href="/login">Connexion</a>
-        <a type="button" class="btn btn-primary" href="/register">Inscription</a>
+        <a type="button" class="btn btn-primary" href="{{ path('app_login', {_locale: app.request.locale}) }}">{{ 'Connexion'|trans }}</a>
+        <a type="button" class="btn btn-primary" href="{{ path('app_register', {_locale: app.request.locale}) }}">{{ 'Inscription'|trans }}</a>
     </div>
 </div>
 

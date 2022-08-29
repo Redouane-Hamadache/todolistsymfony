@@ -8,7 +8,6 @@ use App\Repository\TaskRepository;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: TaskRepository::class)]
-#[UniqueEntity('name')]
 class Task
 {
     #[ORM\Id]

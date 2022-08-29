@@ -17,7 +17,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class TaskController extends AbstractController
 {
-    #[Route('/task', name: 'app_task')]
+    #[Route('/task')]
+    public function indexNoLocale(Request $request): Response
+    {
+        return $this->redirectToRoute('app_task', ['_locale' => $request->getLocale()] );
+    }
+
+    #[Route('/task/{_locale<%app.supported_locales%>}/', name: 'app_task')]
     #[IsGranted('ROLE_USER')]
     public function index(TaskRepository $taskRepository, PaginatorInterface $paginator, Request $request): Response
     {        
@@ -35,7 +41,7 @@ class TaskController extends AbstractController
         ]);
     }
 
-    #[Route("/task/add", name: 'app_addTask' , methods:['GET', 'POST'])]
+    #[Route("/task/{_locale<%app.supported_locales%>}/add", name: 'app_addTask' , methods:['GET', 'POST'])]
     public function add(Request $request, EntityManagerInterface $entityManagerInterface) : Response
     {
         $user= $this->getUser();
@@ -49,7 +55,7 @@ class TaskController extends AbstractController
             $entityManagerInterface->persist($task);
             $entityManagerInterface->flush();
 
-            return new RedirectResponse('/task');
+            return new RedirectResponse('/task/' . $request->getLocale() . '/');
         }
 
         return $this->render('task/add.html.twig',[
@@ -57,7 +63,7 @@ class TaskController extends AbstractController
         ]);
     }
 
-    #[Route('/task/edit/{id}', name : "app_editTask", methods : ['GET', 'POST'])]
+    #[Route('/task/{_locale<%app.supported_locales%>}/edit/{id}', name : "app_editTask", methods : ['GET', 'POST'])]
     public function edit(int $id , TaskRepository $taskRepository, EntityManagerInterface $entityManagerInterface, Request $request) : Response
     {
         $task = $taskRepository->findOneBy(["id" => $id]);
@@ -75,7 +81,7 @@ class TaskController extends AbstractController
                 'Votre tâche a été modifié !'
         );
 
-            return new RedirectResponse('/task');
+            return new RedirectResponse('/task/' . $request->getLocale() . '/');
         }
 
         return $this->render('task/edit.html.twig',[
@@ -83,8 +89,8 @@ class TaskController extends AbstractController
         ]);
     }
 
-    #[Route('/task/delete/{id}', name : "app_deleteTask", methods : ['GET'])]
-    public function delete(int $id , EntityManagerInterface $entityManagerInterface , TaskRepository $taskRepository): Response
+    #[Route('/task/{_locale<%app.supported_locales%>}/delete/{id}', name : "app_deleteTask", methods : ['GET'])]
+    public function delete(int $id , EntityManagerInterface $entityManagerInterface , TaskRepository $taskRepository, Request $request): Response
     {       
         $task = $taskRepository->findOneBy(["id" => $id]);
 
@@ -106,6 +112,6 @@ class TaskController extends AbstractController
                 'Votre tâche a été supprimé !'
         );
 
-        return new RedirectResponse('/task');
+        return new RedirectResponse('/task/' . $request->getLocale() . '/');
     }
 }

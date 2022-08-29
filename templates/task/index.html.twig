@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des tâches{% endblock %}
+{% block title %}{{ 'Liste de taches'|trans }}{% endblock %}
 
 {% block body %}
 <style>
@@ -16,10 +16,11 @@
     <table class="table table-striped">
         <thead class="table-primary">
             <tr>
-            <th scope="col">Nom de tâche</th>
-            <th scope="col">Description</th>
-            <th scope="col" >Date limite</th>
-            <th scope="col" >Action</th>
+            <th scope="col">{{ 'Nom de tâche'|trans }}</th>
+            <th scope="col">{{ 'Description'|trans }}</th>
+            <th scope="col">{{ 'Catégorie'|trans }}</th>
+            <th scope="col" >{{ 'Date limite'|trans }}</th>
+            <th scope="col" >{{ 'Action'|trans }}</th>
             </tr>
         </thead>
         <tbody>
@@ -27,6 +28,7 @@
                 <tr>
                 <td>{{task.name}}</td>
                 <td>{{task.description}}</td>
+                <td>{{task.category}}</td>
                 <td>{{task.deadline|date("d/m/Y")}}</td>
                 <td>
                     <div class="dropdown">
@@ -34,8 +36,8 @@
                         Action
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton{{task.id}}">
-                        <a class="dropdown-item" href="{{ path('app_editTask', {"id" : task.id}) }}">Modifier</a>
-                        <a class="dropdown-item text-danger" href="{{path('app_deleteTask', {"id" : task.id})}}">Supprimer</a>
+                        <a class="dropdown-item" href="{{ path('app_editTask', {"id" : task.id}) }}">{{ 'Modifier'|trans }}</a>
+                        <a class="dropdown-item text-danger" href="{{path('app_deleteTask', {"id" : task.id})}}">{{ 'Supprimer'|trans }}</a>
                     </div>
                     </div>
                 </td>
@@ -50,11 +52,11 @@
         {{ knp_pagination_render(tasks) }}
     </div>
         {% else %}
-            <div class='alert alert-light'>Vous n'avez pas de tâches</div>
+            <div class='alert alert-light'>{{ "Vous n'avez pas de tâches"|trans }}</div>
         {% endif %}
 
     <div id="addButton">
-        <a type="button" href="{{path('app_addTask')}}" class="btn btn-info">Insérer une nouvelle tâche</a>
+        <a type="button" href="{{path('app_addTask')}}" class="btn btn-info">{{ 'Insérer une nouvelle tâche'|trans }}</a>
     </div>
 </div>
 

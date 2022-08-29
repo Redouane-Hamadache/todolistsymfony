@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Création d'une tâche{% endblock title %}
+{% block title %}{{ "Création d'une tâche"|trans }}{% endblock title %}
 
 {% block body %}
 
     <div class="container">
 
-        <h1 class="mt-4">Creation d'une tâche</h1>
+        <h1 class="mt-4">{{ "Création d'une tâche"|trans }}</h1>
         {{form(form)}}
 
     </div>

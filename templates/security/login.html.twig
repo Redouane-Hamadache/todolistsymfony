@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Connexion{% endblock %}
+{% block title %}{{ 'Connexion'|trans }}{% endblock %}
 
 {% block body %}
 <main class="container">
@@ -11,14 +11,14 @@
 
         {% if app.user %}
             <div class="mb-3 mt-3 alert alert-light">
-                Vous êtes connecté en tant  {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Déconnexion</a>
+                {{ 'Vous êtes connecté en tant que '|trans }}  {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">{{ 'Déconnexion'|trans }}</a>
             </div>
         {% endif %}
 
-        <h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
-        <label for="inputEmail">Email</label>
+        <h1 class="h3 mb-3 font-weight-normal">{{ 'Connexion'|trans }}</h1>
+        <label for="inputEmail">{{ 'Email'|trans }}</label>
         <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-        <label for="inputPassword">Mot de passe</label>
+        <label for="inputPassword">{{ 'Mot de passe'|trans }}</label>
         <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 
         <input type="hidden" name="_csrf_token"
@@ -37,11 +37,11 @@
         #}
 
         <button class="btn btn-lg btn-primary mt-3" type="submit">
-            Connexion
+            {{ 'Connexion'|trans }}
         </button>
 
     </form>
 
-    <a href="{{path('app_register')}}">Pas de compte ? Inscrivez-vous.</a>
+    <a href="{{path('app_register')}}">{{ 'Pas de compte ? Inscrivez-vous.'|trans }}</a>
 </main>
 {% endblock %}
