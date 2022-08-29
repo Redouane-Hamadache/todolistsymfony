@@ -19,6 +19,7 @@
             <th scope="col">{{ 'Nom de tâche'|trans }}</th>
             <th scope="col">{{ 'Description'|trans }}</th>
             <th scope="col">{{ 'Catégorie'|trans }}</th>
+            <th scope="col">{{ 'Priorité'|trans }}</th>
             <th scope="col" >{{ 'Date limite'|trans }}</th>
             <th scope="col" >{{ 'Action'|trans }}</th>
             </tr>
@@ -29,6 +30,7 @@
                 <td>{{task.name}}</td>
                 <td>{{task.description}}</td>
                 <td>{{task.category}}</td>
+                <td>{{task.priority}}</td>
                 <td>{{task.deadline|date("d/m/Y")}}</td>
                 <td>
                     <div class="dropdown">

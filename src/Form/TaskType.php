@@ -2,8 +2,11 @@
 
 namespace App\Form;
 
+use App\Entity\Category;
 use App\Entity\Task;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -26,10 +29,18 @@ class TaskType extends AbstractType
                 'label' => 'Description',
                 // 'label_attr' => ['class' => "form-label mt-2"],
             ])
-            ->add('category',null,[
-                // 'attr' => ['class' => 'form-control'],
+            ->add('category',EntityType::class,[
+                'class' => Category::class,
                 'label' => 'Catégorie',
                 // 'label_attr' => ['class' => "form-label mt-2"],
+            ])
+            ->add('priority', ChoiceType::class,[
+                'choices'  => [
+                    "Haute" => "Haute",
+                    "Normale" => "Normale",
+                    "Basse" => "Basse"
+                ],
+                'label' => 'Priorité'
             ])
             ->add('deadline', DateType ::class, [
                 'widget' => 'single_text',

@@ -137,6 +137,22 @@
         <source>Votre tâche a été modifié !</source>
         <target>Your task has been changed!</target>
       </trans-unit>
+      <trans-unit id="sWMerqd" resname="Priorité">
+        <source>Priorité</source>
+        <target>Priority</target>
+      </trans-unit>
+      <trans-unit id="sWefrqd" resname="Haute">
+        <source>Haute</source>
+        <target>High</target>
+      </trans-unit>
+      <trans-unit id="sWcbrqd" resname="Normale">
+        <source>Normale</source>
+        <target>Middle</target>
+      </trans-unit>
+      <trans-unit id="smperqd" resname="Basse">
+        <source>Basse</source>
+        <target>Low</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
