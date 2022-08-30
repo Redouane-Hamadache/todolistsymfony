@@ -3,8 +3,11 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use DateTime;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -29,7 +32,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $firstName;
 
     #[ORM\Column(length: 75)]
-    private string $lastName;
+    private ?string $lastName;
     
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $username = null;
@@ -40,27 +43,32 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var string The hashed password
      */
-    #[ORM\Column]
     // #[Assert\Regex(
     //     pattern: '/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$/',
     //     match: false,
     //     message: 'Your name cannot contain a number',
     // )]
+
+    #[ORM\Column(nullable: true)]
     private ?string $password = null;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Task::class, orphanRemoval: true)]
     private Collection $tasks;
 
+    #[ORM\Column(length: 255)]
+    private ?string $googleId = null;
 
-    // #[ORM\Column(type: 'datetime_immutable')]
-    // private ?\DateTimeImmutable $createdAt = null;
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $avatar = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $hostedDomain = null;
 
 
     
     public function __construct()
     {
         $this->tasks = new ArrayCollection();
-        // $this->createdAt = "2041-11-04 10:00:00";
     }
 
     public function getId(): ?int
@@ -148,12 +156,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @see PasswordAuthenticatedUserInterface
      */
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
         return $this->password;
     }
 
-    public function setPassword(string $password): self
+    public function setPassword(?string $password): self
     {
         $this->password = $password;
 
@@ -198,17 +206,42 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+    
+    
+    public function getGoogleId(): ?string
+    {
+        return $this->googleId;
+    }
 
+    public function setGoogleId(string $googleId): self
+    {
+        $this->googleId = $googleId;
 
-    // public function getCreatedAt(): ?\DateTimeImmutable
-    // {
-    //     return $this->createdAt;
-    // }
+        return $this;
+    }
 
-    // public function setCreatedAt(\DateTimeImmutable $createdAt): self
-    // {
-    //     $this->createdAt = $createdAt;
+    public function getAvatar(): ?string
+    {
+        return $this->avatar;
+    }
 
-    //     return $this;
-    // }
+    public function setAvatar(?string $avatar): self
+    {
+        $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    public function getHostedDomain(): ?string
+    {
+        return $this->hostedDomain;
+    }
+
+    public function setHostedDomain(?string $hostedDomain): self
+    {
+        $this->hostedDomain = $hostedDomain;
+
+        return $this;
+    }
+
 }

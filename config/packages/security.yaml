@@ -19,7 +19,9 @@ security:
             # form_login:
             #     login_path: security.login
             #     check_path: security.login
-            custom_authenticator: App\Security\LoginAuthenticator
+            custom_authenticator: 
+                - App\Security\LoginAuthenticator
+                - App\Security\GoogleAuthenticator
             logout:
                 path: app_logout
                 # where to redirect after logout
