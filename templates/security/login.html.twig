@@ -36,16 +36,24 @@
             </div>
         #}
 
-        <button class="btn btn-lg btn-primary mt-3" type="submit">
+        <button class="btn btn-lg btn-primary mt-3 mb-4" type="submit">
             {{ 'Connexion'|trans }}
         </button>
 
     </form>
 
-    <div class="ult d-flex flex-column">
-    <a href="{{ path("connect_google") }}">Connexion Google</a>
-
     <a href="{{path('app_register')}}">{{ 'Pas de compte ? Inscrivez-vous.'|trans }}</a>
+
+    <div class="ult d-flex flex-column">
+    <span class="label mt-2 mb-1">{{ 'Connectez-vous avec :'|trans }}</span>
+    <a href="{{ path("connect_google") }}">
+        <div class="google-btn">
+        <div class="google-icon-wrapper">
+            <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/>
+        </div>
+        <p class="btn-text"><b>Sign in with google</b></p>
+        </div>
+    </a>
     </div>
 </main>
 {% endblock %}

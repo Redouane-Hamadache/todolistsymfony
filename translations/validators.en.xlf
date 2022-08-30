@@ -5,18 +5,6 @@
       <tool tool-id="symfony" tool-name="Symfony"/>
     </header>
     <body>
-      <trans-unit id="BHWPzao" resname="Les mots de passe ne correspondent pas.">
-        <source>Les mots de passe ne correspondent pas.</source>
-        <target>The passwords do not match.</target>
-      </trans-unit>
-      <trans-unit id="sAWPFdo" resname="Email déja utilisé">
-        <source>Email déja utilisé</source>
-        <target>Email already used</target>
-      </trans-unit>
-      <trans-unit id="sWM5xax" resname="Veuillez entrer un mot de passe contenant 6 caractères dont 1 majusucle, 1 minuscule et 1 chiffre">
-        <source>Veuillez entrer un mot de passe contenant 6 caractères dont 1 majusucle, 1 minuscule et 1 chiffre</source>
-        <target>Please enter a password containing 6 characters including 1 upper case, 1 lower case and 1 number</target>
-      </trans-unit>
       <trans-unit id="zh5oKD9" resname="This value should be false.">
         <source>This value should be false.</source>
         <target>This value should be false.</target>
@@ -548,6 +536,18 @@
       <trans-unit id="PU.w6nC" resname="Please enter a valid week.">
         <source>Please enter a valid week.</source>
         <target>Please enter a valid week.</target>
+      </trans-unit>
+      <trans-unit id="rU_qO0z" resname="Les mots de passe ne correspondent pas.">
+        <source>Les mots de passe ne correspondent pas.</source>
+        <target>The passwords do not match.</target>
+      </trans-unit>
+      <trans-unit id="porTC.c" resname="Email déja utilisé">
+        <source>Email déja utilisé</source>
+        <target>Email already used</target>
+      </trans-unit>
+      <trans-unit id="2A3HQ.8" resname="Veuillez entrer un mot de passe contenant 6 caractères dont 1 majusucle, 1 minuscule et 1 chiffre">
+        <source>Veuillez entrer un mot de passe contenant 6 caractères dont 1 majusucle, 1 minuscule et 1 chiffre</source>
+        <target>Please enter a password containing 6 characters including 1 upper case, 1 lower case and 1 number</target>
       </trans-unit>
     </body>
   </file>

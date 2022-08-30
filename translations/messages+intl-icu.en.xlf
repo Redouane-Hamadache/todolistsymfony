@@ -93,65 +93,69 @@
         <source>Vous êtes connecté en tant que</source>
         <target>You are logged in as</target>
       </trans-unit>
-      <trans-unit id="sEOpVlo" resname="Créer">
+      <trans-unit id="lpQY9NW" resname="Créer">
         <source>Créer</source>
         <target>Create</target>
       </trans-unit>
-      <trans-unit id="sEEJouo" resname="Nom de la tâche">
+      <trans-unit id="qkJx7HN" resname="Nom de la tâche">
         <source>Nom de la tâche</source>
         <target>Task name</target>
       </trans-unit>
-      <trans-unit id="sASJzuo" resname="Catégorie">
+      <trans-unit id="aKU0H8a" resname="Catégorie">
         <source>Catégorie</source>
         <target>Category</target>
       </trans-unit>
-      <trans-unit id="sAADzao" resname="Inscription">
+      <trans-unit id="z7GsDIB" resname="Inscription">
         <source>Inscription</source>
         <target>Register</target>
       </trans-unit>
-      <trans-unit id="sAADzro" resname="Prénom">
+      <trans-unit id="4yW.j5A" resname="Prénom">
         <source>Prénom</source>
         <target>First name</target>
       </trans-unit>
-      <trans-unit id="sDADzao" resname="Nom">
+      <trans-unit id="ssEkU20" resname="Nom">
         <source>Nom</source>
         <target>Last name</target>
       </trans-unit>
-      <trans-unit id="sACHzao" resname="Pseudo">
+      <trans-unit id="BH9Ys5T" resname="Pseudo">
         <source>Pseudo</source>
         <target>User name</target>
       </trans-unit>
-      <trans-unit id="sAXVzao" resname="Confirmation de mot de passe">
+      <trans-unit id="iXve_wV" resname="Confirmation de mot de passe">
         <source>Confirmation de mot de passe</source>
         <target>Password confirmation</target>
       </trans-unit>
-      <trans-unit id="sAWPzao" resname="S'inscrire">
+      <trans-unit id="PCX0_17" resname="S'inscrire">
         <source>S'inscrire</source>
         <target>Register</target>
       </trans-unit>
-      <trans-unit id="sWM5kjx" resname="Votre tâche a été supprimé !">
+      <trans-unit id="yFyRvVA" resname="Votre tâche a été supprimé !">
         <source>Votre tâche a été supprimé !</source>
         <target>Your task has been deleted!</target>
       </trans-unit>
-      <trans-unit id="sWM5eqd" resname="Votre tâche a été modifié !">
+      <trans-unit id="VaXKTL_" resname="Votre tâche a été modifié !">
         <source>Votre tâche a été modifié !</source>
         <target>Your task has been changed!</target>
       </trans-unit>
-      <trans-unit id="sWMerqd" resname="Priorité">
+      <trans-unit id="JsGKMT1" resname="Priorité">
         <source>Priorité</source>
         <target>Priority</target>
       </trans-unit>
-      <trans-unit id="sWefrqd" resname="Haute">
+      <trans-unit id="nD5WWqL" resname="Haute">
         <source>Haute</source>
         <target>High</target>
       </trans-unit>
-      <trans-unit id="sWcbrqd" resname="Normale">
+      <trans-unit id="Gq8_Dkq" resname="Normale">
         <source>Normale</source>
         <target>Middle</target>
       </trans-unit>
-      <trans-unit id="smperqd" resname="Basse">
+      <trans-unit id="JDWpv72" resname="Basse">
         <source>Basse</source>
         <target>Low</target>
+      </trans-unit>
+      <trans-unit id="W1mP98M" resname="Connectez-vous avec :">
+        <source>Connectez-vous avec :</source>
+        <target>Sign in with :</target>
       </trans-unit>
     </body>
   </file>
