@@ -11,6 +11,7 @@
             <a class="nav-link active mx-3" href="{{ path('app_logout', {_locale: app.request.locale}) }}">{{ 'Déconnexion'|trans }}
               <span class="visually-hidden">(current)</span>
             </a>
+            
           </li>
         {% endif %}
         <li class="nav-item dropdown">
@@ -25,5 +26,8 @@
         </li>
       </ul>
     </div>
+        {% if app.user %}
+    <img  class="img-fluid" style="height:50px; width:50px; border-radius: 5px;" src="{{asset("uploads/avatar/" ~  app.user.avatar)}}" alt="">
+        {% endif %}
   </div>
 </nav>

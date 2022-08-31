@@ -3,10 +3,12 @@
 namespace App\Security;
 
 use App\Entity\User;
-use League\OAuth2\Client\Provider\GoogleUser;
+use App\Security\Exception\NotVerifiedEmailException;
+use App\Security\Exception\EmailAlreadyUsedException;
 use Doctrine\ORM\EntityManagerInterface;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use KnpU\OAuth2ClientBundle\Security\Authenticator\OAuth2Authenticator;
+use League\OAuth2\Client\Provider\GithubResourceOwner;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,18 +18,23 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPassport;
+use Symfony\Component\HttpClient\HttpClient;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
+use Symfony\Component\Security\Core\Security;
 
-class GithubAuthenticator extends OAuth2Authenticator
+
+class GitAuthenticator extends OAuth2Authenticator
 {
     private ClientRegistry $clientRegistry;
     private EntityManagerInterface $entityManager;
     private RouterInterface $router;
 
-    public function __construct(ClientRegistry $clientRegistry, EntityManagerInterface $entityManager, RouterInterface $router)
+    public function __construct(HttpClientInterface $client,ClientRegistry $clientRegistry, EntityManagerInterface $entityManager, RouterInterface $router)
     {
         $this->clientRegistry = $clientRegistry;
         $this->entityManager = $entityManager;
         $this->router = $router;
+        $this->client = $client;
     }
 
     public function supports(Request $request): ?bool
@@ -43,21 +50,48 @@ class GithubAuthenticator extends OAuth2Authenticator
 
         return new SelfValidatingPassport(
             new UserBadge($accessToken->getToken(), function () use ($accessToken, $client) {
-                /** @var GoogleUser $googleUser */
+
                 $githubUser = $client->fetchUserFromToken($accessToken);
+                // dd($accessToken->getToken());
 
-                // dd($googleUser->getLastName());
-
-                $email = $githubUser->getEmail();
-                // have they logged in with Google before? Easy!
+                $response = $this->client->request(
+                    'GET',
+                    'https://api.github.com/user/emails',
+                    [
+                        'headers' => [
+                            'Accept' => 'application/vnd.github.v3+json',
+                            'Authorization' => "token {$accessToken->getToken()}",
+                        ]
+                    ]
+                );
+                $emails = json_decode($response->getContent(), true);
+                
+                foreach($emails as $email) {
+                    if ($email['primary'] === true && $email['verified'] === true) {
+                        $data = $githubUser->toArray();
+                        $data['email'] = $email['email'];
+                        $githubUser = new GithubResourceOwner($data);
+                    }
+                }
+                
+                if ($githubUser->getEmail() === null) {
+                    throw new NotVerifiedEmailException();
+                }
+                
+                // dd($githubUser);
+                $arrayGithubUser = $githubUser->toArray();
+                $email = $arrayGithubUser["email"];
+                
+                // have they logged in with Git before? Easy!
                 $existingUser = $this->entityManager->getRepository(User::class)->findOneBy(['githubId' => $githubUser->getId()]);
-
-                $githubData = $githubUser->toArray();
-
+                
                 //User doesnt exist, we create it !
                 if (!$existingUser) {
                     $existingUser = new User();
-                    $existingUser->setGithubId($githubUser->getId());
+                    $existingUser->setEmail($email);
+                    $existingUser->setUsername($arrayGithubUser['login']);
+                    $existingUser->setAvatar($arrayGithubUser['avatar_url']);
+                    $existingUser->setGithubId($arrayGithubUser["id"]);
                     $this->entityManager->persist($existingUser);
                 }
                 $this->entityManager->flush();
