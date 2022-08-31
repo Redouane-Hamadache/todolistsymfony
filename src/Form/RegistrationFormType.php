@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
@@ -44,7 +45,20 @@ class RegistrationFormType extends AbstractType
             ->add('avatar', FileType::class, [
                 'label' => 'Choisir une photo de profil',
                 'mapped' => false,
-                'required' => false
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '2048k',
+                        'mimeTypes' => [
+                            "image/png",
+                            "image/jpg",
+                            "image/jpeg",
+                            "image/gif",
+                            "image/webp"
+                        ],
+                        'mimeTypesMessage' => 'Format Incorrect',
+                    ])
+                ],
             ])
             // ->add('agreeTerms', CheckboxType::class, [
             //     'mapped' => false,

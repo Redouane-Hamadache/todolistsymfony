@@ -27,7 +27,7 @@
       </ul>
     </div>
         {% if app.user %}
-    <img  class="img-fluid" style="height:50px; width:50px; border-radius: 5px;" src="{{asset("uploads/avatar/" ~  app.user.avatar)}}" alt="">
+    <img  class="img-fluid" style="height:50px; width:50px; border-radius: 5px;" {% if app.user.avatar == null %} src="{{asset("uploads/avatar/default.png")}}" {% else %} src="{{asset("uploads/avatar/" ~  app.user.avatar)}}" {% endif %}  alt="">
         {% endif %}
   </div>
 </nav>
